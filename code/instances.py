@@ -4,9 +4,6 @@ from math import sqrt
 
 def create_instance(instance_name):
     dataWithCitys = {}
-    names = set([])
-    lines = []
-    coordinates = []
     calculatedDistances = {}
     cityCoordenations = []
 
@@ -23,30 +20,12 @@ def create_instance(instance_name):
 
     totalCities = len(cityCoordenations)
 
-    for x1 in range(totalCities):
-        for y1 in range(totalCities):
-            calculatedDistances[x1, y1] = 0
-
     for i in range(totalCities):
         for j in range(totalCities):
-            x1 = cityCoordenations[i][0]
-            y1 = cityCoordenations[i][1]
-            x2 = cityCoordenations[j][0]
-            y2 = cityCoordenations[j][1]
-            calculatedDistances[x1, y1] = sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+            if i == j:
+                calculatedDistances[i, j] = 0
+            calculatedDistances[i, j] = round(sqrt((cityCoordenations[i][0] - cityCoordenations[j][0]) ** 2 + (cityCoordenations[i][1] - cityCoordenations[j][1]) ** 2), 2)
 
-    # for city in range(totalCities):
-    #     for x1 in range(totalCities):
-    #         for y1 in range(totalCities):
-    #             try:
-    #                 if dataWithCitys[(x1, y1)] is not None:
-    #                     # Distance = sqrt((x1 - x2)^2 + (y1 - y2)^2)
-    #                     calculatedDistances[x1, y1] = 1
-    #                 else:
-    #                     calculatedDistances[x1, y1] = 0
-    #             except (KeyError, IndexError):
-    #                 calculatedDistances[x1, y1] = 0
-    #                 continue
 
     # print(dataWithCitys)
     # print(dataWithCitys[(37, 52)])
@@ -57,7 +36,7 @@ def create_instance(instance_name):
     # print(cityCoordenations)
     # print(calculatedDistances[(1, 1)])
     print(calculatedDistances)
-    return cityCoordenations, dataWithCitys, calculatedDistances
+    return calculatedDistances, totalCities
 
 
 create_instance("mtsp51_3")
