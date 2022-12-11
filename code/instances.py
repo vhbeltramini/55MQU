@@ -6,11 +6,15 @@ def create_instance(instance_name):
     dataWithCities = {}
     calculatedDistances = {}
     cityCoordenations = []
+    totalTravelingSalesman = 0
 
     with open("../instances-data/" + instance_name + ".txt") as file:
         index = 0
         for line in file.readlines():
             if index < 2:
+                if index == 0:
+                    totalTravelingSalesman = line.strip().split(' ')[2]
+
                 index += 1
                 continue
 
@@ -35,8 +39,8 @@ def create_instance(instance_name):
     # print("----------------------")
     # print(cityCoordenations)
     # print(calculatedDistances[(1, 1)])
-    print(calculatedDistances)
-    return calculatedDistances, totalCities
+    # print(calculatedDistances)
+    return calculatedDistances, totalCities, totalTravelingSalesman
 
 
 create_instance("mtsp51_3")
