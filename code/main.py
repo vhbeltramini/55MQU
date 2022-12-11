@@ -11,7 +11,7 @@ def main():
 
     match(solveMethod):
         case "heuristic1":
-            Heurisitica1(instance)
+            Heurisitica1(calculatedDistances, totalCities)
 
 
 main()
