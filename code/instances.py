@@ -19,33 +19,49 @@ def create_instance(instance_name):
 
             city, posX, posY = line.strip().split('\t')
             dataWithCitys[(int(posX), int(posY))] = int(city)
-            cityCoordenations.append([(int(posX), int(posY))])
+            cityCoordenations.append([int(posX), int(posY)])
 
     totalCities = len(cityCoordenations)
+
     for x1 in range(totalCities):
         for y1 in range(totalCities):
-            try:
-                if dataWithCitys[(x1, y1)] is not None:
-                    # Distance = sqrt((x1 - x2)^2 + (y1 - y2)^2)
-                    calculatedDistances[x1, y1] = 1
-                else:
-                    calculatedDistances[x1, y1] = 0
-            except (KeyError, IndexError):
-                calculatedDistances[x1, y1] = 0
-                continue
+            calculatedDistances[x1, y1] = 0
 
-    print(dataWithCitys)
-    print(dataWithCitys[(37, 52)])
-    print("----------------------")
-    print(cityCoordenations)
-    print(calculatedDistances[(1, 1)])
+    for i in range(totalCities):
+        for j in range(totalCities):
+            x1 = cityCoordenations[i][0]
+            y1 = cityCoordenations[i][1]
+            x2 = cityCoordenations[j][0]
+            y2 = cityCoordenations[j][1]
+            calculatedDistances[x1, y1] = sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+    # for city in range(totalCities):
+    #     for x1 in range(totalCities):
+    #         for y1 in range(totalCities):
+    #             try:
+    #                 if dataWithCitys[(x1, y1)] is not None:
+    #                     # Distance = sqrt((x1 - x2)^2 + (y1 - y2)^2)
+    #                     calculatedDistances[x1, y1] = 1
+    #                 else:
+    #                     calculatedDistances[x1, y1] = 0
+    #             except (KeyError, IndexError):
+    #                 calculatedDistances[x1, y1] = 0
+    #                 continue
+
+    # print(dataWithCitys)
+    # print(dataWithCitys[(37, 52)])
+    # print("----------------------")
+    # # print(cityCoordenations[0].index(0))
+    # # print(cityCoordenations[0][0])
+    # print("----------------------")
+    # print(cityCoordenations)
+    # print(calculatedDistances[(1, 1)])
     print(calculatedDistances)
     return cityCoordenations, dataWithCitys, calculatedDistances
 
 
 create_instance("mtsp51_3")
 # create_instance(sys.argv[1])
-
 
 
 # testesteste
