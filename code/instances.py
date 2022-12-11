@@ -3,7 +3,7 @@ from math import sqrt
 
 
 def create_instance(instance_name):
-    dataWithCitys = {}
+    dataWithCities = {}
     calculatedDistances = {}
     cityCoordenations = []
 
@@ -15,7 +15,7 @@ def create_instance(instance_name):
                 continue
 
             city, posX, posY = line.strip().split('\t')
-            dataWithCitys[(int(posX), int(posY))] = int(city)
+            dataWithCities[(int(posX), int(posY))] = int(city)
             cityCoordenations.append([int(posX), int(posY)])
 
     totalCities = len(cityCoordenations)
