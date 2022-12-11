@@ -9,68 +9,74 @@ garantir que todos os nodos sejam saidos
 
 print("Start")
 
-def Heurisitica1(matriz, Ncidade):
 
+def Heurisitica1(matriz, Ncidade):
     distancesMatrix = matriz
     caixeiros = 3
     vertices_Faltantes = []
     vertices_percoridos = [1]
-    distancias = [[],[],[]]
-    percorridos = [[1],[1],[1]]
+    percorridos = [[1], [1], [1]]
     menor = 0
     concluido = False
     menorCidade = 0
     menorcaixeiro = 0
+    print(distancesMatrix)
 
     for i in range(Ncidade):
         vertices_Faltantes.append(i + 1)
-    del(vertices_Faltantes[0])
+    del (vertices_Faltantes[0])
 
-    #print(vertices_Faltantes)
+    # print(vertices_Faltantes)
 
     while concluido == False:
-        
-        distancias = [[],[],[]]
+        distancias = [[]] * caixeiros
+
         # calcular distancia para cada caixeiro de todos os vértices possíveis
-        for i in range(len(vertices_Faltantes) - 1):
+        for i in range(len(vertices_Faltantes)):
             for j in range(caixeiros):
-                distancias[j].append(distancesMatrix[(percorridos[j][-1],vertices_Faltantes[i])])
+                distancias[j].append(distancesMatrix[(percorridos[j][-1], vertices_Faltantes[i])])
 
         print("Distancias ==")
         print(distancias)
         # Soma as distâncias e acha a menor distância
         somadis = []
-        for i in range(len(vertices_Faltantes) - 1):
+        for i in range(len(vertices_Faltantes)):
+            index = i - 1
             linha = []
             soma = 0
             for j in range(caixeiros):
-                linha.append(distancias[j][i])
-                soma += distancias[j][i]
+                linha.append(distancias[j][index])
+                soma += distancias[j][index]
             somadis.append(linha)
-            
-            if i == 0:
+
+            if index == 0:
                 menor = soma
                 menorCidade = 0
             elif soma < menor:
                 menor = soma
-                menorCidade = i
+                menorCidade = index
 
-        #print(menorCidade)
+        # print(menorCidade)
         print("soma Dis ==")
         print(somadis)
         print(menor)
+
+        menorcaixeiro = 0
         for j in range(caixeiros):
-            if j == 0:
-                menorcaixeiro = 0
-            elif somadis[menorCidade][j] < somadis[menorCidade][menorcaixeiro]:
+            print("----------------------------------------------")
+            print(somadis)
+            print(somadis[menorCidade][j])
+            print("soma Dis ==")
+            print(somadis[menorCidade][menorcaixeiro])
+            if somadis[menorCidade][j] < somadis[menorCidade][menorcaixeiro]:
                 menorcaixeiro = j
 
         verticemenor = vertices_Faltantes[menorCidade]
         percorridos[menorcaixeiro].append(verticemenor)
         del (vertices_Faltantes[menorCidade])
         vertices_percoridos.append(verticemenor)
-        #print(menorCidade)
-        #print(vertices_Faltantes)
+        # print(menorCidade)
+        # print(vertices_Faltantes)
 
         if len(vertices_Faltantes) == 0:
             concluido = True
