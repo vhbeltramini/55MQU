@@ -39,6 +39,7 @@ C.append(linha7)
 
 X = [] #matriz com as listas de caminhos percorridos para cada caixieiro (m)
 
+print(C)
 
 def Heurisitica1():
     vertices_Faltantes = [2,3,4,5,6,7]
@@ -54,45 +55,37 @@ def Heurisitica1():
     while concluido == False:
 
         #calcular distancia para cada caixeiro de todos os vértices possíveis
-        for i in range(len(vertices_Faltantes)):
+        for i in range(len(vertices_Faltantes)-1):
             for j in range(m):
                 if j == 0:
-                    distancia1.append(C[caixieiro1[len[caixieiro1]]][vertices_Faltantes[i]])
+                    distancia1.append(C[caixieiro1[-1]][vertices_Faltantes[i]])
                 elif j == 1:
-                    distancia2.append(C[caixieiro2[len[caixieiro2]]][vertices_Faltantes[i]])
+                    distancia2.append(C[caixieiro2[-1]][vertices_Faltantes[i]])
 
         #Soma as distâncias e acha a menor distância
-        for i in range(vertices_Faltantes):
-            for j in range(m):
-                if j == 0:
-                    somadis[i] = distancia1[i]
-                elif j == 1:
-                    somadis[i] += distancia2[i]
-                if i == 0:
-                    menor = somadis[i]
-                elif somadis[i] < menor:
-                    menor = somadis[i]
 
-        for i in range(somadis):
-            if somadis[i] == menor:
+        for i in range(len(vertices_Faltantes)-1):
+            linha = distancia1[i], distancia2[i]
+            somadis.append(linha)
+            soma = distancia1[i] + distancia2[i]
+            if i == 0:
+                menor = soma
+            elif soma < menor:
+                menor = soma
+
+        for i in range(len(somadis)-1):
+            if (somadis[i][0] + somadis[i][1]) == menor:
+                print(somadis[i][0] + somadis[i][1])
                 verticemenor = vertices_Faltantes[i]
-                for j in range(m):
-                    if j == 0:
-                        menorcaixieiro = distancia1[i]
-                        caixeiro = 1
-                    elif j == 1:
-                        if distancia2[i] < menorcaixieiro:
-                            menorcaixieiro = distancia2[i]
-                            caixeiro = 2
 
-                if caixeiro == 1:
+                if somadis[i][0] < somadis[i][1]:
                     caixieiro1.append(verticemenor)
-
-                elif caixeiro == 2:
+                else:
                     caixieiro2.append(verticemenor)
 
                 del(vertices_Faltantes[i])
                 vertices_percoridos.append(verticemenor)
+                print(vertices_Faltantes)
 
         if len(vertices_Faltantes) == 0:
             concluido = True
@@ -101,13 +94,11 @@ def Heurisitica1():
 
     ShowResult(vertices_Faltantes, vertices_percoridos)
 
-
 def ShowResult(vertices_Faltantes, vertices_percoridos):
     print(X)
     print()
     print(vertices_Faltantes)
     print()
     print(vertices_percoridos)
-
 
 Heurisitica1()
