@@ -109,4 +109,5 @@ def ShowResult(vertices_Faltantes, vertices_percoridos):
     print()
     print(vertices_percoridos)
 
+
 Heurisitica1()
