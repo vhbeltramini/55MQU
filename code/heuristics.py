@@ -23,8 +23,7 @@ def Heurisitica1(matriz, Ncidade):
     print(distancesMatrix)
 
     for i in range(Ncidade):
-        vertices_Faltantes.append(i + 1)
-    del (vertices_Faltantes[0])
+        vertices_Faltantes.append(i)
 
     # print(vertices_Faltantes)
 
@@ -39,7 +38,7 @@ def Heurisitica1(matriz, Ncidade):
         print("Distancias ==")
         print(distancias)
         # Soma as distâncias e acha a menor distância
-        somadis = []
+        somadis = [[]] * caixeiros
         for i in range(len(vertices_Faltantes)):
             index = i - 1
             linha = []
@@ -47,7 +46,7 @@ def Heurisitica1(matriz, Ncidade):
             for j in range(caixeiros):
                 linha.append(distancias[j][index])
                 soma += distancias[j][index]
-            somadis.append(linha)
+                somadis[j].append(linha)
 
             if index == 0:
                 menor = soma
@@ -64,11 +63,7 @@ def Heurisitica1(matriz, Ncidade):
         menorcaixeiro = 0
         for j in range(caixeiros):
             print("----------------------------------------------")
-            print(somadis)
-            print(somadis[menorCidade][j])
-            print("soma Dis ==")
-            print(somadis[menorCidade][menorcaixeiro])
-            if somadis[menorCidade][j] < somadis[menorCidade][menorcaixeiro]:
+            if somadis[j][j] < somadis[j][menorCidade]:
                 menorcaixeiro = j
 
         verticemenor = vertices_Faltantes[menorCidade]
