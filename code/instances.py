@@ -22,13 +22,16 @@ def create_instance(instance_name):
             cityCoordenations.append([(int(posX), int(posY))])
 
     totalCities = len(cityCoordenations)
-    for x in range(totalCities):
-        for y in range(totalCities):
+    for x1 in range(totalCities):
+        for y1 in range(totalCities):
             try:
-                if dataWithCitys[(x, y)] is not None:
-                    calculatedDistances[x, y] = 1
-            # Distance = sqrt((x1 - x2)^2 + (y1 - y2)^2)
+                if dataWithCitys[(x1, y1)] is not None:
+                    # Distance = sqrt((x1 - x2)^2 + (y1 - y2)^2)
+                    calculatedDistances[x1, y1] = 1
+                else:
+                    calculatedDistances[x1, y1] = 0
             except (KeyError, IndexError):
+                calculatedDistances[x1, y1] = 0
                 continue
 
     print(dataWithCitys)
@@ -36,10 +39,14 @@ def create_instance(instance_name):
     print("----------------------")
     print(cityCoordenations)
     print(calculatedDistances[(1, 1)])
-    return cityCoordenations, dataWithCitys,
+    print(calculatedDistances)
+    return cityCoordenations, dataWithCitys, calculatedDistances
 
 
-create_instance(sys.argv[1])
+create_instance("mtsp51_3")
+# create_instance(sys.argv[1])
+
+
 
 # testesteste
 
