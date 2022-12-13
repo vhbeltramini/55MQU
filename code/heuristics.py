@@ -7,7 +7,7 @@ garantir que todos os nodos sejam visitados
 garantir que todos os nodos sejam saidos
 '''
 
-print("Start")
+print("Starting")
 
 
 def Heurisitica1(matriz, Ncidade):
@@ -77,6 +77,7 @@ def Heurisitica1(matriz, Ncidade):
             concluido = True
 
     ShowResult(vertices_Faltantes, vertices_percoridos, percorridos)
+    return percorridos
 
 
 def ShowResult(vertices_Faltantes, vertices_percoridos, percorridos):
@@ -86,3 +87,4 @@ def ShowResult(vertices_Faltantes, vertices_percoridos, percorridos):
     print(vertices_percoridos)
     print()
     print(percorridos)
+    print(len(percorridos))

@@ -38,8 +38,8 @@ def create_instance(instance_name):
     # # print(cityCoordenations[0][0])
     # print("----------------------")
     # print(cityCoordenations)
-    print(calculatedDistances[(1, 5)])
-    # print(calculatedDistances)
+    # print(calculatedDistances[(1, 5)])
+    print(len(calculatedDistances))
     return calculatedDistances, totalCities, totalTravelingSalesman
 
 
