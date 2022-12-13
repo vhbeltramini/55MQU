@@ -13,7 +13,7 @@ def create_instance(instance_name):
         for line in file.readlines():
             if index < 2:
                 if index == 0:
-                    totalTravelingSalesman = line.strip().split(' ')[2]
+                    totalTravelingSalesman = int(line.strip().split(' ')[2])
 
                 index += 1
                 continue

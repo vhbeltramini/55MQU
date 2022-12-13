@@ -23,7 +23,7 @@ def main():
         #case "heuristic22":
         #    Heurisitica22(calculatedDistances, totalCities, totalTravelingSalesman)
         case "lsm":
-            Heurisitica1(calculatedDistances, totalCities)
+            initialSol = Heurisitica1(calculatedDistances, totalCities, totalTravelingSalesman)
             #initialSol = Heurisitica1(calculatedDistances, totalCities)
             #LocalSearchM(calculatedDistances, totalCities, totalTravelingSalesman, initialSol)
 

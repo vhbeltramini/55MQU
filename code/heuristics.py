@@ -12,7 +12,6 @@ print("Starting")
 
 def Heurisitica1(matriz, Ncidade, TravelerSalesman):
     distancesMatrix = matriz
-    caixeiros = 3
     vertices_Faltantes = []
     vertices_percoridos = [1]
     percorridos = []
@@ -22,7 +21,7 @@ def Heurisitica1(matriz, Ncidade, TravelerSalesman):
         if i != 00:
             vertices_Faltantes.append(i+1)
 
-    for i in range(caixeiros):
+    for i in range(TravelerSalesman):
         linha = [1]
         percorridos.append(linha)
 
@@ -32,7 +31,7 @@ def Heurisitica1(matriz, Ncidade, TravelerSalesman):
         # calcular distancia para cada caixeiro de todos os vértices possíveis
         for i in range(len(vertices_Faltantes)):
             caixdist = []
-            for j in range(caixeiros):
+            for j in range(TravelerSalesman):
                 verticeatual = vertices_Faltantes[i]
                 verticecaixeiro = percorridos[j][-1]
                 dist = distancesMatrix[(verticecaixeiro-1, verticeatual-1)]
@@ -52,7 +51,7 @@ def Heurisitica1(matriz, Ncidade, TravelerSalesman):
         menorCidade = 0
         for i in range(len(vertices_Faltantes)):
             soma = 0
-            for j in range(caixeiros):
+            for j in range(TravelerSalesman):
                 soma += distancias[i][j]
             if i == 0:
                 menor = soma
@@ -69,7 +68,7 @@ def Heurisitica1(matriz, Ncidade, TravelerSalesman):
 
         #achar o caixeiro com a menor distândia da menor soma
         menorcaixeiro = 0
-        for j in range(caixeiros):
+        for j in range(TravelerSalesman):
             if distancias[menorCidade][j] < distancias[menorCidade][menorcaixeiro]:
                 menorcaixeiro = j
         print(menorcaixeiro)
@@ -89,7 +88,6 @@ def Heurisitica1(matriz, Ncidade, TravelerSalesman):
 
 def Heurisitica12(matriz, Ncidade, TravelerSalesman):
     distancesMatrix = matriz
-    caixeiros = 3
     vertices_Faltantes = []
     vertices_percoridos = [1]
     percorridos = []
@@ -100,7 +98,7 @@ def Heurisitica12(matriz, Ncidade, TravelerSalesman):
         if i != 00:
             vertices_Faltantes.append(i+1)
 
-    for i in range(caixeiros):
+    for i in range(TravelerSalesman):
         linha = [1]
         percorridos.append(linha)
 
@@ -110,7 +108,7 @@ def Heurisitica12(matriz, Ncidade, TravelerSalesman):
         # calcular distancia para cada caixeiro de todos os vértices possíveis
         for i in range(len(vertices_Faltantes)):
             caixdist = []
-            for j in range(caixeiros):
+            for j in range(TravelerSalesman):
                 verticeatual = vertices_Faltantes[i]
                 verticecaixeiro = percorridos[j][-1]
                 dist = distancesMatrix[(verticecaixeiro-1, verticeatual-1)]
@@ -130,7 +128,7 @@ def Heurisitica12(matriz, Ncidade, TravelerSalesman):
         menorCidade = 0
         for i in range(len(vertices_Faltantes)):
             soma = 0
-            for j in range(caixeiros):
+            for j in range(TravelerSalesman):
                 soma += distancias[i][j]
             if i == 0:
                 menor = soma
@@ -147,7 +145,7 @@ def Heurisitica12(matriz, Ncidade, TravelerSalesman):
 
         #achar o caixeiro com a menor distândia da menor soma
         menorcaixeiro = 0
-        for j in range(caixeiros):
+        for j in range(TravelerSalesman):
             if distancias[menorCidade][j] < distancias[menorCidade][menorcaixeiro]:
                 menorcaixeiro = j
         print(menorcaixeiro)
