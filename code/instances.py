@@ -24,12 +24,11 @@ def create_instance(instance_name):
 
     totalCities = len(cityCoordenations)
 
-    for i in range(totalCities):
-        for j in range(totalCities):
+    for i in (number + 1 for number in range(totalCities)):
+        for j in (number + 1 for number in range(totalCities)):
             if i == j:
                 calculatedDistances[i, j] = 0
-            calculatedDistances[i, j] = round(sqrt((cityCoordenations[i][0] - cityCoordenations[j][0]) ** 2 + (cityCoordenations[i][1] - cityCoordenations[j][1]) ** 2), 2)
-
+            calculatedDistances[i, j] = round(sqrt((cityCoordenations[i-1][0] - cityCoordenations[j-1][0]) ** 2 + (cityCoordenations[i-1][1] - cityCoordenations[j-1][1]) ** 2), 2)
 
     # print(dataWithCitys)
     # print(dataWithCitys[(37, 52)])
