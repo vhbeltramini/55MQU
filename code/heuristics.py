@@ -10,68 +10,76 @@ garantir que todos os nodos sejam saidos
 print("Starting")
 
 
-def Heurisitica1(matriz, Ncidade):
+def Heurisitica1(matriz, Ncidade, TravelerSalesman):
     distancesMatrix = matriz
     caixeiros = 3
     vertices_Faltantes = []
     vertices_percoridos = [1]
-    percorridos = [[1], [1], [1]]
-    menor = 0
+    percorridos = []
     concluido = False
-    menorCidade = 0
-    menorcaixeiro = 0
-    print(distancesMatrix)
 
     for i in range(Ncidade):
-        vertices_Faltantes.append(i)
+        if i != 00:
+            vertices_Faltantes.append(i+1)
 
-    # print(vertices_Faltantes)
+    for i in range(caixeiros):
+        linha = [1]
+        percorridos.append(linha)
 
     while concluido == False:
-        distancias = [[]] * caixeiros
-
+        print("----------------------------------------------")
+        distancias = []
         # calcular distancia para cada caixeiro de todos os vértices possíveis
         for i in range(len(vertices_Faltantes)):
+            caixdist = []
             for j in range(caixeiros):
-                distancias[j].append(distancesMatrix[(percorridos[j][-1], vertices_Faltantes[i])])
+                verticeatual = vertices_Faltantes[i]
+                verticecaixeiro = percorridos[j][-1]
+                dist = distancesMatrix[(verticecaixeiro-1, verticeatual-1)]
+                print(percorridos[j][-1]-1)
+                print(verticeatual-1)
+                caixdist.append(dist)
+            
+            distancias.append(caixdist)
+            print(distancias)
+            print(i)
 
         print("Distancias ==")
         print(distancias)
+
         # Soma as distâncias e acha a menor distância
-        somadis = [[]] * caixeiros
+        menor = 0
+        menorCidade = 0
         for i in range(len(vertices_Faltantes)):
-            index = i - 1
-            linha = []
             soma = 0
             for j in range(caixeiros):
-                linha.append(distancias[j][index])
-                soma += distancias[j][index]
-                somadis[j].append(linha)
-
-            if index == 0:
+                soma += distancias[i][j]
+            if i == 0:
                 menor = soma
-                menorCidade = 0
             elif soma < menor:
                 menor = soma
-                menorCidade = index
+                menorCidade = i
 
-        # print(menorCidade)
         print("soma Dis ==")
-        print(somadis)
         print(menor)
+        print(menorCidade)
 
+        print(vertices_Faltantes)
+        print(vertices_percoridos)
+
+        #achar o caixeiro com a menor distândia da menor soma
         menorcaixeiro = 0
         for j in range(caixeiros):
-            print("----------------------------------------------")
-            if somadis[j][j] < somadis[j][menorCidade]:
+            if distancias[menorCidade][j] < distancias[menorCidade][menorcaixeiro]:
                 menorcaixeiro = j
-
+        print(menorcaixeiro)
         verticemenor = vertices_Faltantes[menorCidade]
         percorridos[menorcaixeiro].append(verticemenor)
         del (vertices_Faltantes[menorCidade])
         vertices_percoridos.append(verticemenor)
-        # print(menorCidade)
-        # print(vertices_Faltantes)
+
+        print(vertices_Faltantes)
+        print(vertices_percoridos)
 
         if len(vertices_Faltantes) == 0:
             concluido = True
@@ -79,6 +87,83 @@ def Heurisitica1(matriz, Ncidade):
     ShowResult(vertices_Faltantes, vertices_percoridos, percorridos)
     return percorridos
 
+def Heurisitica12(matriz, Ncidade, TravelerSalesman):
+    distancesMatrix = matriz
+    caixeiros = 3
+    vertices_Faltantes = []
+    vertices_percoridos = [1]
+    percorridos = []
+    concluido = False
+    alfa = 50
+
+    for i in range(Ncidade):
+        if i != 00:
+            vertices_Faltantes.append(i+1)
+
+    for i in range(caixeiros):
+        linha = [1]
+        percorridos.append(linha)
+
+    while concluido == False:
+        print("----------------------------------------------")
+        distancias = []
+        # calcular distancia para cada caixeiro de todos os vértices possíveis
+        for i in range(len(vertices_Faltantes)):
+            caixdist = []
+            for j in range(caixeiros):
+                verticeatual = vertices_Faltantes[i]
+                verticecaixeiro = percorridos[j][-1]
+                dist = distancesMatrix[(verticecaixeiro-1, verticeatual-1)]
+                print(percorridos[j][-1]-1)
+                print(verticeatual-1)
+                caixdist.append(dist)
+            
+            distancias.append(caixdist)
+            print(distancias)
+            print(i)
+
+        print("Distancias ==")
+        print(distancias)
+
+        # Soma as distâncias e acha a menor distância
+        menor = 0
+        menorCidade = 0
+        for i in range(len(vertices_Faltantes)):
+            soma = 0
+            for j in range(caixeiros):
+                soma += distancias[i][j]
+            if i == 0:
+                menor = soma
+            elif soma < menor:
+                menor = soma
+                menorCidade = i
+
+        print("soma Dis ==")
+        print(menor)
+        print(menorCidade)
+
+        print(vertices_Faltantes)
+        print(vertices_percoridos)
+
+        #achar o caixeiro com a menor distândia da menor soma
+        menorcaixeiro = 0
+        for j in range(caixeiros):
+            if distancias[menorCidade][j] < distancias[menorCidade][menorcaixeiro]:
+                menorcaixeiro = j
+        print(menorcaixeiro)
+        verticemenor = vertices_Faltantes[menorCidade]
+        percorridos[menorcaixeiro].append(verticemenor)
+        del (vertices_Faltantes[menorCidade])
+        vertices_percoridos.append(verticemenor)
+
+        print(vertices_Faltantes)
+        print(vertices_percoridos)
+
+        if len(vertices_Faltantes) == 0:
+            concluido = True
+
+    ShowResult(vertices_Faltantes, vertices_percoridos, percorridos)
+    return percorridos
 
 def ShowResult(vertices_Faltantes, vertices_percoridos, percorridos):
     print()
@@ -87,4 +172,3 @@ def ShowResult(vertices_Faltantes, vertices_percoridos, percorridos):
     print(vertices_percoridos)
     print()
     print(percorridos)
-    print(len(percorridos))
