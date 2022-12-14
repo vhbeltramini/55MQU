@@ -11,21 +11,20 @@ from instances import create_instance
 def main():
     instance = sys.argv[1]
     solveMethod = sys.argv[2]
-    calculatedDistances, totalCities, totalTravelingSalesman = create_instance(instance)
+    calculatedMatrix, nCities, nTravelers = create_instance(instance)
 
     match(solveMethod):
-        case "heuristic1":
-            Heurisitica1(calculatedDistances, totalCities, totalTravelingSalesman)
-        case "heuristic12":
-            Heurisitica12(calculatedDistances, totalCities, totalTravelingSalesman)
+        case "h1":
+            Heurisitica1(calculatedMatrix, nCities, nTravelers)
+        case "h2":
+            Heurisitica12(calculatedMatrix, nCities, nTravelers)
         case "heuristic2":
-            Heurisitica2(calculatedDistances, totalCities, totalTravelingSalesman)
+            Heurisitica2(calculatedMatrix, nCities, nTravelers)
         #case "heuristic22":
-        #    Heurisitica22(calculatedDistances, totalCities, totalTravelingSalesman)
+        #    Heurisitica22(calculatedMatrix, nCities, nTravelers)
         case "lsm":
-            initialSol = Heurisitica1(calculatedDistances, totalCities, totalTravelingSalesman)
-            #initialSol = Heurisitica1(calculatedDistances, totalCities)
-            #LocalSearchM(calculatedDistances, totalCities, totalTravelingSalesman, initialSol)
+            initialSol = Heurisitica1(calculatedMatrix, nCities, nTravelers)
+            LocalSearchM(calculatedMatrix, nCities, nTravelers, initialSol)
 
 
 main()

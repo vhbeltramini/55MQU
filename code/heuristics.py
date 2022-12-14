@@ -83,6 +83,9 @@ def Heurisitica1(distancesMatrix, nCities, nTravelerSalesman):
         if len(vertices_Faltantes) == 0:
             concluido = True
 
+    for j in range(nTravelerSalesman):
+        solution[j].append(1)
+
     ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman)
     return solution
 
