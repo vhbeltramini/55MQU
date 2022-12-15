@@ -1,7 +1,6 @@
 import sys
 from math import sqrt
 
-
 def create_instance(instance_name):
     dataWithCities = {}
     calculatedDistances = {}
