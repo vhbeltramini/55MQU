@@ -89,10 +89,11 @@ def CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, solution, 
                 continue
             result[i] = round(result[i] + distancesMatrix[(solution[i][y], solution[i][y + 1])], 2)
 
-    print()
-    print("Representação de soluções")
-    print(result)
-    print()
+    if showTotalCost:
+        print()
+        print("Representação de soluções")
+        print(result)
+        print()
     totalCost = 0
     for i in range(len(result)):
         totalCost = totalCost + result[i]

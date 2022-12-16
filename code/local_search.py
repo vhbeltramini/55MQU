@@ -6,7 +6,8 @@ garantir que todos m voltem para o nodo 1
 garantir que todos os nodos sejam visitados
 garantir que todos os nodos sejam saidos
 '''
-from utils import CalculateObjetiveFunction, CalculateObjetiveFunctionWithPrintForLocalSearch, ShowRoutes, ShowLocalSearchImproviments
+from utils import CalculateObjetiveFunction, CalculateObjetiveFunctionWithPrintForLocalSearch, ShowRoutes, \
+    ShowLocalSearchImproviments, CalculateObjetiveFunctionWithPrint
 from copy import copy, deepcopy
 
 
@@ -17,37 +18,65 @@ def LocalSearchInterIntra(distancesMatrix, nCities, nTravelers, randomSolution, 
         randomSolution[i].pop(0)
     iterations = 0
     localSearchSol = randomSolution
-    while (iterations < desiredIterations):
-        localSearchSol = intra_route_shift(distancesMatrix, nCities, nTravelers, localSearchSol)
-        localSearchSol = inter_route_shift(distancesMatrix, nTravelers, localSearchSol)
+    while iterations < desiredIterations:
+        localSearchSol = intra_route_shift(distancesMatrix, nCities, nTravelers, localSearchSol, False)
+        localSearchSol = inter_route_shift(distancesMatrix, nTravelers, localSearchSol, False)
         iterations += 1
     ShowLocalSearchImproviments(distancesMatrix, localSearchSol, randomSolution, nTravelers)
 
 
-def LocalSearchIntra(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations):
-    print("starting local search")
+def LocalSearchIntra(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations, printSol):
     for i in range(nTravelers):
         randomSolution[i].pop(-1)
         randomSolution[i].pop(0)
     iterations = 0
     localSearchSol = randomSolution
-    while (iterations < desiredIterations):
-        localSearchSol = intra_route_shift(distancesMatrix, nCities, nTravelers, localSearchSol)
+    while iterations < desiredIterations:
+        localSearchSol = intra_route_shift(distancesMatrix, nCities, nTravelers, localSearchSol, False)
         iterations += 1
-    CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, localSearchSol, nTravelers, True)
+    return CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, localSearchSol, nTravelers, printSol), \
+        localSearchSol
 
 
-def LocalSearchInter(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations):
-    print("starting local search")
+def LocalSearchIntraGrasp(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations, printSol):
     for i in range(nTravelers):
         randomSolution[i].pop(-1)
         randomSolution[i].pop(0)
     iterations = 0
     localSearchSol = randomSolution
-    while (iterations < desiredIterations):
-        localSearchSol = inter_route_shift(distancesMatrix, nTravelers, localSearchSol)
+    while iterations < desiredIterations:
+        localSearchSol = intra_route_shift(distancesMatrix, nCities, nTravelers, localSearchSol, False)
         iterations += 1
-    CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, localSearchSol, nTravelers, True)
+    return CalculateObjetiveFunction(distancesMatrix, localSearchSol, nTravelers, printSol), \
+        localSearchSol
+
+
+def LocalSearchInter(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations, printSol):
+    for i in range(nTravelers):
+        randomSolution[i].pop(-1)
+        randomSolution[i].pop(0)
+    iterations = 0
+    localSearchSol = randomSolution
+    while iterations < desiredIterations:
+        localSearchSol = inter_route_shift(distancesMatrix, nTravelers, localSearchSol, printSol)
+        iterations += 1
+    print("Initial Solution")
+    CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, randomSolution, nTravelers, True)
+    print("Final Solution")
+    CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, localSearchSol, nTravelers, printSol)
+
+
+def LocalSearchInterGrasp(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations, printSol):
+    for i in range(nTravelers):
+        randomSolution[i].pop(-1)
+        randomSolution[i].pop(0)
+    iterations = 0
+    localSearchSol = randomSolution
+    while iterations < desiredIterations:
+        localSearchSol = inter_route_shift(distancesMatrix, nTravelers, localSearchSol, False)
+        iterations += 1
+
+    return CalculateObjetiveFunction(distancesMatrix, localSearchSol, nTravelers, printSol), localSearchSol
 
 
 def calculatedImprove(distancesMatrix, solutionToBeCalculated):
@@ -56,20 +85,20 @@ def calculatedImprove(distancesMatrix, solutionToBeCalculated):
             print(y)
 
 
-def intra_route_shift(distancesMatrix, nCities, nTravelers, initialSolution):
+def intra_route_shift(distancesMatrix, nCities, nTravelers, initialSolution, printImprove):
     bestTotalCost = CalculateObjetiveFunction(distancesMatrix, initialSolution, nTravelers, False)
     for i in range(nTravelers):
         for x in range(len(initialSolution[i]) - 1):
             for y in range(len(initialSolution[i]) - 1):
                 initialSolutionAux = deepcopy(initialSolution)
-
                 initialSolution[i].insert(y, initialSolution[i].pop(x))
 
                 newTotalCost = CalculateObjetiveFunction(distancesMatrix, initialSolution, nTravelers, False)
                 if newTotalCost < bestTotalCost:
-                    print("Improved by intra_route_shift | new total cost (", newTotalCost, ") old total cost (",
-                          bestTotalCost, ")")
-                    ShowRoutes(nTravelers, initialSolution)
+                    if printImprove:
+                        print("Improved by intra_route_shift | new total cost (", newTotalCost, ") old total cost (",
+                              bestTotalCost, ")")
+                        ShowRoutes(nTravelers, initialSolution)
                     bestTotalCost = newTotalCost
                     continue
                 else:
@@ -96,29 +125,24 @@ def intra_route_shift(distancesMatrix, nCities, nTravelers, initialSolution):
 #                     initialSolution[i][x] = auxX
 #     return initialSolution
 
-
-def calc_shift_cost(inital_pos, next_pos_candidate):
-    print("inter_route_shift")
-
-
-def inter_route_shift(instance, S):
-    print("inter_route_shift")
-
-
-def inter_route_shift(distancesMatrix, nTravelers, newIntinalSol):
+def inter_route_shift(distancesMatrix, nTravelers, newIntinalSol, printImprove):
     bestTotalCost = CalculateObjetiveFunction(distancesMatrix, newIntinalSol, nTravelers, False)
     for i in range(nTravelers):
         for x in range(len(newIntinalSol[i]) - 1):
             for j in range(nTravelers):
-                for y in range(len(newIntinalSol[j]) - 2):
+                iterations = 0
+                for y in range(len(newIntinalSol[j])):
+                    index = y - iterations
+                    iterations += 1
                     newIntinalSolAux = deepcopy(newIntinalSol)
-                    newIntinalSol[i].insert(x, newIntinalSol[j].pop(y))
-
+                    newIntinalSol[i].insert(x, newIntinalSol[j].pop(index))
                     newTotalCost = CalculateObjetiveFunction(distancesMatrix, newIntinalSol, nTravelers, False)
-                    if newTotalCost < bestTotalCost:
-                        print("Improved by inter_route_shift | new total cost (", newTotalCost, ") old total cost (",
-                              bestTotalCost, ")")
-                        ShowRoutes(nTravelers, newIntinalSol)
+                    if newTotalCost < bestTotalCost and len(newIntinalSol[j]) >= 2:
+                        if printImprove:
+                            print("Improved by inter_route_shift | new total cost (", newTotalCost,
+                                  ") old total cost (",
+                                  bestTotalCost, ")")
+                            ShowRoutes(nTravelers, newIntinalSol)
                         bestTotalCost = newTotalCost
                         continue
                     else:

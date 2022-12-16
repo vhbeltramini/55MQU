@@ -17,7 +17,10 @@ def create_instance(instance_name):
                 index += 1
                 continue
 
-            city, posX, posY = line.strip().split('\t')
+            if len(line.strip().split("\t")) == 1:
+                city, posX, posY = line.strip().split(" ")
+            else:
+                city, posX, posY = line.strip().split("\t")
             dataWithCities[(int(posX), int(posY))] = int(city)
             cityCoordenations.append([int(posX), int(posY)])
 
@@ -41,7 +44,6 @@ def create_instance(instance_name):
     return calculatedDistances, totalCities, totalTravelingSalesman
 
 
-create_instance("mtsp51_3")
 # create_instance(sys.argv[1])
 
 

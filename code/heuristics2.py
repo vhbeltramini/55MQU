@@ -9,6 +9,7 @@ garantir que todos os nodos sejam saidos
 from utils import ShowResult
 import random
 
+
 # print("Starting")
 
 
@@ -68,7 +69,8 @@ def Heurisitica2(distancesMatrix, nCities, nTravelerSalesman, showResult):
     ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman, showResult)
     return solution
 
-def Heuristica22(distancesMatrix, nCities, nTravelerSalesman):
+
+def Heuristica22(distancesMatrix, nCities, nTravelerSalesman, showResult):
     vertices_Faltantes = []
     vertices_percoridos = [1]
     solution = []
@@ -113,8 +115,8 @@ def Heuristica22(distancesMatrix, nCities, nTravelerSalesman):
         # achar o caixeiro e a cidade com a menor distândia da menor soma
         menorCaixeiro = distancias[randomCidade][2]
         menorCidade = distancias[randomCidade][1]
-        print(distancias[randomCidade])
-        print(menorCidade)
+        # print(distancias[randomCidade])
+        # print(menorCidade)
         verticemenor = vertices_Faltantes[menorCidade]
         solution[menorCaixeiro].append(verticemenor)
         del (vertices_Faltantes[menorCidade])
@@ -123,5 +125,6 @@ def Heuristica22(distancesMatrix, nCities, nTravelerSalesman):
         if len(vertices_Faltantes) == 0:
             concluido = True
 
-    ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman, True)
+    if showResult:
+        ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman, True)
     return solution

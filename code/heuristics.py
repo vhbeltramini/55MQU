@@ -74,7 +74,7 @@ def Heurisitica1(distancesMatrix, nCities, nTravelerSalesman, showResult):
     ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman, True)
     return solution
 
-def Heurisitica12(distancesMatrix, nCities, nTravelerSalesman):
+def Heuristica12(distancesMatrix, nCities, nTravelerSalesman, showResult):
     vertices_Faltantes = []
     vertices_percoridos = [1]
     solution = []
@@ -129,5 +129,6 @@ def Heurisitica12(distancesMatrix, nCities, nTravelerSalesman):
         if len(vertices_Faltantes) == 0:
             concluido = True
 
-    ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman, True)
+    if showResult:
+        ShowResult(distancesMatrix, vertices_Faltantes, vertices_percoridos, solution, nTravelerSalesman, True)
     return solution
