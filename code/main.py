@@ -30,13 +30,13 @@ def main():
             Heuristica22(calculatedMatrix, nCities, nTravelers, True)
         case "lsii":
             initialSol = getInitialSolutionFromArg(initialSolutionArg, calculatedMatrix, nCities, nTravelers)
-            LocalSearchInterIntra(calculatedMatrix, nCities, nTravelers, initialSol, 60)
+            LocalSearchInterIntra(calculatedMatrix, nCities, nTravelers, initialSol, 30)
         case "lsia":
             initialSol = getInitialSolutionFromArg(initialSolutionArg, calculatedMatrix, nCities, nTravelers)
-            LocalSearchIntra(calculatedMatrix, nCities, nTravelers, initialSol, 60, True)
+            LocalSearchIntra(calculatedMatrix, nCities, nTravelers, initialSol, 30, True)
         case "lsie":
             initialSol = getInitialSolutionFromArg(initialSolutionArg, calculatedMatrix, nCities, nTravelers)
-            LocalSearchInter(calculatedMatrix, nCities, nTravelers, initialSol, 60, True)
+            LocalSearchInter(calculatedMatrix, nCities, nTravelers, initialSol, 20, True)
         case "grasp1":
             GraspSemiGredyConstructionWithIntraLocalSearch(calculatedMatrix, nCities, nTravelers)
         case "grasp2":
@@ -57,6 +57,10 @@ def getInitialSolutionFromArg(arg, calculatedMatrix, nCities, nTravelers):
             return Heurisitica2(calculatedMatrix, nCities, nTravelers, False)
         case "h22":
             return Heuristica22(calculatedMatrix, nCities, nTravelers, False)
+        case _:
+            print("Please informe an heuristic to be the intial solution")
+            exit()
+
 
 
 main()

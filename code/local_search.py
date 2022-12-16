@@ -34,9 +34,11 @@ def LocalSearchIntra(distancesMatrix, nCities, nTravelers, randomSolution, desir
     while iterations < desiredIterations:
         localSearchSol = intra_route_shift(distancesMatrix, nCities, nTravelers, localSearchSol, False)
         iterations += 1
+    print("Initial Solution")
+    CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, randomSolution, nTravelers, True)
+    print("Final Solution")
     return CalculateObjetiveFunctionWithPrintForLocalSearch(distancesMatrix, localSearchSol, nTravelers, printSol), \
         localSearchSol
-
 
 def LocalSearchIntraGrasp(distancesMatrix, nCities, nTravelers, randomSolution, desiredIterations, printSol):
     for i in range(nTravelers):
@@ -58,6 +60,7 @@ def LocalSearchInter(distancesMatrix, nCities, nTravelers, randomSolution, desir
     iterations = 0
     localSearchSol = randomSolution
     while iterations < desiredIterations:
+        print(iterations)
         localSearchSol = inter_route_shift(distancesMatrix, nTravelers, localSearchSol, printSol)
         iterations += 1
     print("Initial Solution")
