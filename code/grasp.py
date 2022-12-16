@@ -15,7 +15,7 @@ def GraspSemiGredyConstructionWithIntraLocalSearch(calculatedMatrix, nCities, nT
     iterations = 0
     while iterations <= 20:
         newSol = Heuristica12(calculatedMatrix, nCities, nTravelers, False)
-        newTotalCost, newSol = LocalSearchIntraGrasp(calculatedMatrix, nCities, nTravelers, newSol, 20, False)
+        newTotalCost, newSol = LocalSearchIntraGrasp(calculatedMatrix, nCities, nTravelers, newSol, 10, False)
         if initalCost > newTotalCost:
             initalCost = newTotalCost
             bestFounded = newSol
@@ -29,7 +29,7 @@ def GraspSemiGredyConstructionWithIntraLocalSearch(calculatedMatrix, nCities, nT
 
 def GraspSemiGredyConstructionWithInterLocalSearch(calculatedMatrix, nCities, nTravelers):
     initialSol = Heuristica12(calculatedMatrix, nCities, nTravelers, False)
-    initalCost, initialSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, initialSol, 10, False)
+    initalCost, initialSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, initialSol, 5, False)
     bestFounded = deepcopy(initialSol)
     print("initial best sol", bestFounded)
     print("initial best cost", initalCost)
@@ -37,7 +37,7 @@ def GraspSemiGredyConstructionWithInterLocalSearch(calculatedMatrix, nCities, nT
     iterations = 0
     while iterations <= 20:
         newSol = Heuristica12(calculatedMatrix, nCities, nTravelers, False)
-        newTotalCost, newSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, newSol, 20, False)
+        newTotalCost, newSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, newSol, 5, False)
         if initalCost > newTotalCost:
             initalCost = newTotalCost
             bestFounded = newSol
@@ -59,11 +59,12 @@ def GraspSemiGredyTwoConstructionWithIntraLocalSearch(calculatedMatrix, nCities,
     iterations = 0
     while iterations <= 20:
         newSol = Heuristica22(calculatedMatrix, nCities, nTravelers, False)
-        newTotalCost, newSol = LocalSearchIntraGrasp(calculatedMatrix, nCities, nTravelers, newSol, 20, False)
+        newTotalCost, newSol = LocalSearchIntraGrasp(calculatedMatrix, nCities, nTravelers, newSol, 10, False)
         if initalCost > newTotalCost:
             initalCost = newTotalCost
             bestFounded = newSol
         iterations += 1
+        print(iterations)
     print("Initial Solution")
     CalculateObjetiveFunctionWithPrintForLocalSearch(calculatedMatrix, initialSol, nTravelers, True)
     print()
@@ -73,7 +74,7 @@ def GraspSemiGredyTwoConstructionWithIntraLocalSearch(calculatedMatrix, nCities,
 
 def GraspSemiGredyTwoConstructionWithInterLocalSearch(calculatedMatrix, nCities, nTravelers):
     initialSol = Heuristica22(calculatedMatrix, nCities, nTravelers, False)
-    initalCost, initialSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, initialSol, 10, False)
+    initalCost, initialSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, initialSol, 5, False)
     bestFounded = deepcopy(initialSol)
     print("initial best sol", bestFounded)
     print("initial best cost", initalCost)
@@ -81,7 +82,7 @@ def GraspSemiGredyTwoConstructionWithInterLocalSearch(calculatedMatrix, nCities,
     iterations = 0
     while iterations <= 20:
         newSol = Heuristica22(calculatedMatrix, nCities, nTravelers, False)
-        newTotalCost, newSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, newSol, 20, False)
+        newTotalCost, newSol = LocalSearchInterGrasp(calculatedMatrix, nCities, nTravelers, newSol, 5, False)
         if initalCost > newTotalCost:
             initalCost = newTotalCost
             bestFounded = newSol

@@ -6,156 +6,85 @@
 \usepackage[brazil]{babel}
 \usepackage[latin1]{inputenc}  
 
-     
 \sloppy
 
-\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+\title{Múltiplo Caixeiro Viajante}
 
-\author{Luciana P. Nedel\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
-  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
-
-
-\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
-  (UFRGS)\\
-  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
-\nextinstitute
-  Department of Computer Science -- University of Durham\\
-  Durham, U.K.
-\nextinstitute
-  Departamento de Sistemas e Computação\\
-  Universidade Regional de Blumenal (FURB) -- Blumenau, SC -- Brazil
-  \email{\{nedel,flavio\}@inf.ufrgs.br, R.Bordini@durham.ac.uk,
-  jomi@inf.furb.br}
+\author{Victor Hugo Grabowski Beltramini\inst{1},\\ André Ellias Zanella\inst{2}}
+\address{Universidade do Estado de Santa Catarina (UDESC) \\ Ibirama, SC, Brasil
+  \email{vhbeltramini@gmail.com, andreellias19@gmail.com}
 }
 
-\begin{document} 
+\begin{document}
 
 \maketitle
 
 \begin{abstract}
-  This meta-paper describes the style to be used in articles and short papers
-  for SBC conferences. For papers in English, you should add just an abstract
-  while for the papers in Portuguese, we also ask for an abstract in
-  Portuguese (``resumo''). In both cases, abstracts should not have more than
-  10 lines and must be in the first page of the paper.
+  This article addresses a complex optimization problem, which consists of finding the best route for a network of brand representatives to travel through cities, starting from the same city and ending in the same city so that all cities be covered in the shortest possible distance. This article aims to solves this optimization problem by using a set of metaheuristics that contemplate constructive and modification strategies. Finally, a study is carried out experimental based on the results obtained.
 \end{abstract}
-     
-\begin{resumo} 
-  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
-  resumos de artigos para publicação nos anais das conferências organizadas
-  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
-  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
-  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract)
-  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
-  página do artigo.
+
+\begin{resumo}
+  Este artigo contempla um problema de otimização complexo, que consiste em encontrar a melhor rota para um grupo de N caixeiros percorrerem C cidades, partindo da mesma cidade e terminando na mesma cidade de forma que todas as cidades sejam percorridas na menor distância possível, este problema recebe o nome de caixeiros viajantes múltiplos. O presente artigo tem como objetivo resolver esse problema de otimização, por meio da utilização de um conjunto de metaheurísticas que contemplam estratégias construtivas e de modificação. Por fim é realizado um estudo experimental com base nos resultados obtidos.
 \end{resumo}
 
+\section{Introdução}
 
-\section{General Information}
+O problema do caixeiro viajante múltiplo (mTSP) é uma verção mais complexa do problema clássico de otimização que é o caixieiro viajante, este problema se basei em definir uma rota que tenha o menor costo para que um caixeiro que percorra um numero x de cidades, e na variação abordada nesse trabalho podemos ter n caixeiros ao invés de um com no problema inicial. Esse problema pode ser aplicado em diversos casos práticos, como planejamento de caminho tridimensional, planejamento de caminhos para robôs e drones ou serviço de transporte de contêineres.
 
-All full papers and posters (short papers) submitted to some SBC conference,
-including any supporting documents, should be written in English or in
-Portuguese. The format paper should be A4 with single column, 3.5 cm for upper
-margin, 2.5 cm for bottom margin and 3.0 cm for lateral margins, without
-headers or footers. The main font must be Times, 12 point nominal size, with 6
-points of space before each paragraph. Page numbers must be suppressed.
+O objetivo principal do trabalho é criar metaheurísticas que possam de forma efetiva diminuir o custo da função objetiva até um nível aceitável de satisfação. Para isso foram criadas 2 heurísticas, 2 buscas locasis e 2 GRASP. Ao final é feita uma análise de todos os dados obtidos para se obter uma melhor compreensão da proporção de melhora obtida.
 
-Full papers must respect the page limits defined by the conference.
-Conferences that publish just abstracts ask for \textbf{one}-page texts.
+\section{Problema} \label{sec:firstpage}
 
-\section{First Page} \label{sec:firstpage}
+Este problema contempla o dificuldade de um grupo de indivíduos precisem passar por um grupo de cidades, de modo que todas as cidades sejam percorridas por no máximo um indivíduo e que todos iniciem e terminem na mesma cidade. Com isso, no final desejá-se obter a solução em que as soma das distâncias da rota de cada indivíduo seja a menor possível.
 
-The first page must display the paper title, the name and address of the
-authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are
-required only for papers written in Portuguese). The title must be centered
-over the whole page, in 16 point boldface font and with 12 points of space
-before itself. Author names must be centered in 12 point font, bold, all of
-them disposed in the same line, separated by commas and with 12 points of
-space after the title. Addresses must be centered in 12 point font, also with
-12 points of space after the authors' names. E-mail addresses should be
-written using font Courier New, 10 point nominal size, with 6 points of space
-before and 6 points of space after.
-
-The abstract and ``resumo'' (if is the case) must be in 12 point Times font,
-indented 0.8cm on both sides. The word \textbf{Abstract} and \textbf{Resumo},
-should be written in boldface and must precede the text.
-
-\section{CD-ROMs and Printed Proceedings}
-
-In some conferences, the papers are published on CD-ROM while only the
-abstract is published in the printed Proceedings. In this case, authors are
-invited to prepare two final versions of the paper. One, complete, to be
-published on the CD and the other, containing only the first page, with
-abstract and ``resumo'' (for papers in Portuguese).
-
-\section{Sections and Paragraphs}
-
-Section titles must be in boldface, 13pt, flush left. There should be an extra
-12 pt of space before each title. Section numbering is optional. The first
-paragraph of each section should not be indented, while the first lines of
-subsequent paragraphs should be indented by 1.27 cm.
-
-\subsection{Subsections}
-
-The subsection titles must be in boldface, 12pt, flush left.
-
-\section{Figures and Captions}\label{sec:figs}
-
-
-Figure and table captions should be centered if less than one line
-(Figure~\ref{fig:exampleFig1}), otherwise justified and indented by 0.8cm on
-both margins, as shown in Figure~\ref{fig:exampleFig2}. The caption font must
-be Helvetica, 10 point, boldface, with 6 points of space before and after each
-caption.
+Para otimizar esse problema foi utilizada uma representação em grafo, onde cada vértice é uma cidade e as arestar representam a distância entre as cidades. Assim ao somar as distâncias do caminho de cada representante obteremos a função objetivo. Com isso obtemos os dados onde i é o númeor de cidades, t é o número de caixeiros e Dij é a matriz de distâncias entre cada cidade. A seguir temos o modelo matemático do problema:
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.5\textwidth]{fig1.jpg}
-\caption{A typical figure}
-\label{fig:exampleFig1}
+\includegraphics[width=0.5\textwidth]{modelo.png}
+\caption{Modelo matemático}
+\label{fig:heuristica}
+\end{figure}
+
+\section{Algoritmos}
+
+Inicialmente foram feitas 2 heurísticas construtivas, onde a primeir utiliza o critério de seleção como a menor soma encontrada para a distância entre a posição atual de cada caixeiro e a cidade c. Após achar a melhor soma (cidade) é então escolhido o caixeiro com a menor distância para essa cidade e que incluirá essa cidade na rota.
+
+Para a segunda heurística foi utilizado o critério de seleção como a menor distância encontrada entre os caixeiros em suas posições atuais, incluindo assim essa cidade para esse caixeiro. Além disso para cada heurística foram feitas 2 implementações, sendo o primeira a gulosa, onde só é pego a menos distância encontrada e a segunda uma semi-gulosa do tipo alfa-gulosa, onde é pego um valor aleatório entre os 50\% melhores valores obtidos segundo cada respectivo critério.
+
+Também foram feitas 2 buscas locais, as duas buscas locais tiveram como critério de aceitação somente soluções que melhorassem a solução incial, para que essa solução melhorada pudesse ser atingide foram implementadas duas maneiras de perturbações diferentes, uma delas sendo um shift entre rotas e a segunda aplicando um shifi intra-rotas, após cada uma dessas melhoras era definida está nova solução como sendo melhor, e portanto assim o algoritmo seguia com essa nova solução afim de enconcontrar uma solução ainda melhor.
+
+Por fim foram desenvolvido e aplicados 4 algoritmos GRASP(Greedy Randomized Adaptative Search Procedure), combinando as duas heurísticas construtivas na sua implementação semi-gulosa com as duas buscas locais. A Heurística foi utilizada para a solução inicial e depois aplicado a busca local por uma quantidade x de vezes de forma que se obtenha uma melhor solução do que usando cada um de forma individual.
+
+No implementações relacionadas ao GRASP o sistema se comportava da seguinte maneira, a partir de uma solução inicial advinda de uma heurísticas construtiva semi-gulosa era aplicada uma busca local afim de melhorar essa solução inicial e então era definida está como a melhor solução até o momento, após esta etapa inicial o sistema iterava x vezes realizando uma nova heurísticas construtiva semi-gulosa e novamente uma nova busca local a fim de se tentar encontrar uma solução melhor, caso não encontratava o sistema continuava com a melhor solução até o momento, e ao final das x iterações era retornada a melhor solução encontrada dentre as iterações.
+
+\section{Resultados}
+
+Segue abaixo a tabela com os resultados obtidos, onde na figura 2 contém as duas heurísticas desenvolvids com seus respectivos resultados otimizados para cada instância. Na figura 3 é constado as 2 buscas locais e os 4 GRASPs implementados, cada um com o seu resltado para as instâncias utilizadas. Ao final temos uma coluna com o GRASP deselvoido por \cite{alvesa:84} (figura 3), que foi usado como referência para a comparação de resultados obtidos. Para cada metaheurística foi pego o resultado com a melhor otimização obtida (S*) e a média entre 3 resultados obtidos (S). As instâncias utilizadas durante a implementação e teste fora obtidas de \cite{hehao:22}, onde as instâncias variam de 51 á 200 cidade e de 3 ou 5 caixieiros.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{heuristica1.png}
+\caption{Heurísticas}
+\label{fig:heuristica}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=.3\textwidth]{fig2.jpg}
-\caption{This figure is an example of a figure caption taking more than one
-  line and justified considering margins mentioned in Section~\ref{sec:figs}.}
-\label{fig:exampleFig2}
+\includegraphics[width=\textwidth]{heuristica2.png}
+\caption{Buscas locais e GRASPs}
+\label{fig:heuristica}
 \end{figure}
 
-In tables, try to avoid the use of colored or shaded backgrounds, and avoid
-thick, doubled, or unnecessary framing lines. When reporting empirical data,
-do not use more decimal digits than warranted by their precision and
-reproducibility. Table caption must be placed before the table (see Table 1)
-and the font used must also be Helvetica, 10 point, boldface, with 6 points of
-space before and after each caption.
+Como visto nos resultados, ainda há uma difença considerável entre o melhor resultado encontrado a partir da nossa implementação e a melhor solução já encontrada, porém tal diferença pode ser diminuida considerávelmente a partir uma implementação mais otimizada da função responsável pelo cálculo da função objetiva que avalia a cada iteração se houve ou não uma melhoria na solução.
 
-\begin{table}[ht]
-\centering
-\caption{Variables to be considered on the evaluation of interaction
-  techniques}
-\label{tab:exTable1}
-\includegraphics[width=.7\textwidth]{table.jpg}
-\end{table}
+Como solução usada atualmente não está fazendo essa avaliação da função objetiva de maneira mais otimizada possível a mesma acaba custando um tempo considerável considerando o tempo total de execução para a definição de cada solução, isso acabou fazendo com que fosse diminuida o numero de iterações até se encontrar a melhor solução afim de que o processo não levasse muito tempo para entregrar uma solução melhor.
 
-\section{Images}
+\section{Conclusão}
 
-All images and illustrations should be in black-and-white, or gray tones,
-excepting for the papers that will be electronically available (on CD-ROMs,
-internet, etc.). The image resolution on paper should be about 600 dpi for
-black-and-white images, and 150-300 dpi for grayscale images.  Do not include
-images with excessive resolution, as they may take hours to print, without any
-visible difference in the result. 
+Com base nos resultados obtidos ao executar cada meta-heurística podemos perceber que a otimização de fato ocorreu, todas as instâncias apresentaram uma melhoria considerável. Único porém no entando é que quando olhando exclusivamente as buscas locais e as heurísticas construtivas ainda possívelmente há melhorias que podem ser feitas para que se chege mais proximas as melhores soluções já encontradas até o momento.
 
-\section{References}
-
-Bibliographic references must be unambiguous and uniform.  We recommend giving
-the author names references in brackets, e.g. \cite{knuth:84},
-\cite{boulic:91}, and \cite{smith:99}.
-
-The references must be listed using 12 point font size, with 6 points of space
-before each reference. The first line of each reference should not be
-indented, while the subsequent should be indented by 0.5 cm.
+Portanto pode se concluir que as implementações atingiram sua proposta inicial que era de encontrar uma solução para o problema e ainda posteriomente foram capazes de melhorar solução uma inicial semi-gulosa que acaba trazendo um pouco de aletoriedade para a solução mas ainda permitindo encontrar uma solução boa a fim de otimizar ao máximo possível a rota dos caixeiros para que fosse percorrida com a menor distancia possível.
 
 \bibliographystyle{sbc}
 \bibliography{sbc-template}

@@ -35,6 +35,7 @@ def CalculateObjetiveFunctionWithPrint(distancesMatrix, solution, nTravelerSales
         totalCost = totalCost + result[i]
 
     if showTotalCost:
+        print()
         print("Custo total")
         print(totalCost)
 
